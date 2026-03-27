@@ -15,7 +15,13 @@ public class SolicitacaoModel {
     private StatusEnum status;
     private LocalDate prazo;
 
-    public SolicitacaoModel(String protocolo, String categoria, String descricao, String localizacao, PrioridadeEnum prioridade, StatusEnum status, LocalDate prazo) {
+    public SolicitacaoModel(String protocolo,
+                            String categoria,
+                            String descricao,
+                            String localizacao,
+                            PrioridadeEnum prioridade,
+                            StatusEnum status,
+                            LocalDate prazo) {
         this.protocolo = protocolo;
         this.categoria = categoria;
         this.descricao = descricao;
