@@ -1,26 +1,25 @@
-package models;
+package com.observaAcao.models;
 
-import enums.CategoriaEnum;
 import enums.PrioridadeEnum;
 import enums.StatusEnum;
 
 import java.time.LocalDate;
 
-public class SolicitaçãoModel {
+public class SolicitacaoModel {
 
-    private String protocolo;
+    private final String protocolo;
     private String categoria;
     private String descricao;
-    private String localização;
+    private String localizacao;
     private PrioridadeEnum prioridade;
     private StatusEnum status;
     private LocalDate prazo;
 
-    public SolicitaçãoModel(String protocolo, String categoria, String descricao, String localização, PrioridadeEnum prioridade, StatusEnum status, LocalDate prazo) {
+    public SolicitacaoModel(String protocolo, String categoria, String descricao, String localizacao, PrioridadeEnum prioridade, StatusEnum status, LocalDate prazo) {
         this.protocolo = protocolo;
         this.categoria = categoria;
         this.descricao = descricao;
-        this.localização = localização;
+        this.localizacao = localizacao;
         this.prioridade = prioridade;
         this.status = status;
         this.prazo = prazo;
@@ -38,8 +37,8 @@ public class SolicitaçãoModel {
         return descricao;
     }
 
-    public String getLocalização() {
-        return localização;
+    public String getLocalizacao() {
+        return localizacao;
     }
 
     public PrioridadeEnum getPrioridade() {
@@ -62,8 +61,8 @@ public class SolicitaçãoModel {
         this.descricao = descricao;
     }
 
-    public void setLocalização(String localização) {
-        this.localização = localização;
+    public void setLocalizacao(String localizacao) {
+        this.localizacao = localizacao;
     }
 
     public void setPrioridade(PrioridadeEnum prioridade) {
