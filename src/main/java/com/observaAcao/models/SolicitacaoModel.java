@@ -7,7 +7,8 @@ import java.time.LocalDate;
 
 public class SolicitacaoModel {
 
-    private final String protocolo;
+    private static Integer contador = 1;
+    private final Integer protocolo;
     private String categoria;
     private String descricao;
     private String localizacao;
@@ -15,23 +16,17 @@ public class SolicitacaoModel {
     private StatusEnum status;
     private LocalDate prazo;
 
-    public SolicitacaoModel(String protocolo,
-                            String categoria,
+    public SolicitacaoModel(String categoria,
                             String descricao,
-                            String localizacao,
-                            PrioridadeEnum prioridade,
-                            StatusEnum status,
-                            LocalDate prazo) {
-        this.protocolo = protocolo;
+                            String localizacao) {
+        this.protocolo = contador++;
         this.categoria = categoria;
         this.descricao = descricao;
         this.localizacao = localizacao;
-        this.prioridade = prioridade;
-        this.status = status;
-        this.prazo = prazo;
+        this.status = StatusEnum.ABERTO;
     }
 
-    public String getProtocolo() {
+    public Integer getProtocolo() {
         return protocolo;
     }
 

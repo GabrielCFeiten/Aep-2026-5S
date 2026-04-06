@@ -1,6 +1,6 @@
-package models;
+package com.observaAcao.models;
 
-import enums.TipoUsuarioEnum;
+import com.observaAcao.enums.*;
 
 public class UsuarioModel {
 

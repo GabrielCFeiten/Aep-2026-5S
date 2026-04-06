@@ -8,17 +8,17 @@ import java.util.List;
 
 public class SolicitacaoService {
 
-    private SolicitacaoRepository db = new SolicitacaoRepository();
+    private SolicitacaoRepository banco = new SolicitacaoRepository();
 
-    public void criar(String protocolo, String categoria, String descricao, String localizacao, enums.PrioridadeEnum prioridade, enums.StatusEnum status, LocalDate prazo) {
+    public void criar(String categoria, String descricao, String localizacao) {
         if (descricao == null || descricao.length() < 10) {
             throw new RuntimeException("Descrição inválida");
         }
 
-        db.salvar(new SolicitacaoModel(protocolo, categoria, descricao, localizacao, prioridade, status, prazo));
+        SolicitacaoModel solicitacao = new SolicitacaoModel(categoria,
+                descricao, localizacao);
+
+        banco.salvar(solicitacao);
     }
 
-    public List<SolicitacaoModel> listar() {
-        return db.listar();
-    }
 }
