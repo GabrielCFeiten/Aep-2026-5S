@@ -11,13 +11,13 @@ public class DBInit {
 
             s.execute("""
                 CREATE TABLE IF NOT EXISTS solicitacao (
-                    protocolo VARCHAR PRIMARY KEY,
-                    categoria VARCHAR,
-                    descricao TEXT,
-                    localizacao VARCHAR,
-                    prioridade VARCHAR,
-                    status VARCHAR,
-                    prazo DATE
+                protocolo INT PRIMARY KEY AUTO_INCREMENT,
+                categoria VARCHAR(100),
+                descricao VARCHAR(255),
+                localizacao VARCHAR(150),
+                prioridade VARCHAR(50),
+                status VARCHAR(50) DEFAULT 'ABERTO',
+                prazo DATE
                 )
             """);
 

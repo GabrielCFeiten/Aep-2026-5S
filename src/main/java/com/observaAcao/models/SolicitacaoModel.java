@@ -1,14 +1,13 @@
 package com.observaAcao.models;
 
-import enums.PrioridadeEnum;
-import enums.StatusEnum;
+import com.observaAcao.enums.PrioridadeEnum;
+import com.observaAcao.enums.StatusEnum;
 
 import java.time.LocalDate;
 
 public class SolicitacaoModel {
 
-    private static Integer contador = 1;
-    private final Integer protocolo;
+    private Integer protocolo;
     private String categoria;
     private String descricao;
     private String localizacao;
@@ -19,11 +18,9 @@ public class SolicitacaoModel {
     public SolicitacaoModel(String categoria,
                             String descricao,
                             String localizacao) {
-        this.protocolo = contador++;
         this.categoria = categoria;
         this.descricao = descricao;
         this.localizacao = localizacao;
-        this.status = StatusEnum.ABERTO;
     }
 
     public Integer getProtocolo() {
