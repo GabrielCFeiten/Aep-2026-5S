@@ -12,8 +12,10 @@ public class DBInit {
             s.execute("""
                 CREATE TABLE IF NOT EXISTS usuario (
                     id INT PRIMARY KEY AUTO_INCREMENT,
-                    nome VARCHAR,
-                    tipo VARCHAR
+                    nome VARCHAR(255),
+                    tipo VARCHAR(50),
+                    cpf VARCHAR(15),
+                    telefone VARCHAR(20)
                 )
             """);
 

@@ -2,13 +2,14 @@ package com.observaAcao.interfaces;
 
 import com.observaAcao.controllers.LeituraController;
 import com.observaAcao.controllers.SolicitacaoController;
+import com.observaAcao.models.UsuarioModel;
 
 import java.util.Scanner;
 import static com.observaAcao.controllers.LeituraController.lerInt;
 
 public class MenuUsuario {
 
-    public static void menuUsuario(Scanner leitor) {
+    public static void menuUsuario(Scanner leitor, UsuarioModel usuario) {
         LeituraController.limparTela();
         System.out.println("Bem vindo ao menu principal do usuario");
         int opcao = 0;
@@ -24,7 +25,7 @@ public class MenuUsuario {
 
             switch (opcao) {
                 case 1:
-                    solicitacaoController.criarSolicitacao(leitor);
+                    solicitacaoController.criarSolicitacao(leitor, usuario);
                     break;
                 case 2:
                     break;

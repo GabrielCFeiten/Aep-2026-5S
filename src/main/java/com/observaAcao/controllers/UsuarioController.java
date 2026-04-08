@@ -6,28 +6,49 @@ import com.observaAcao.enums.TipoUsuarioEnum;
 import com.observaAcao.models.UsuarioModel;
 import com.observaAcao.services.UsuarioService;
 
+import static com.observaAcao.controllers.LeituraController.isCpfValido;
+
 public class UsuarioController {
 
     private final UsuarioService service = new UsuarioService();
 
-    public void menuController(UsuarioModel user, Scanner leitor) {
-        user.getTipo().executarMenu(leitor);
-    }
-
     public UsuarioModel criarUsuario(Scanner sc) {
 
-        System.out.println("Escolha o tipo de usuário:");
+        System.out.println("Escolha o tipo:");
 
         for (TipoUsuarioEnum t : TipoUsuarioEnum.values()) {
             System.out.println(t.getCodigo() + " - " + t.name());
         }
 
-        int codigo = LeituraController.lerInt(sc);
+        TipoUsuarioEnum tipo = TipoUsuarioEnum.fromCodigo(LeituraController.lerInt(sc));
 
-        TipoUsuarioEnum tipo = TipoUsuarioEnum.fromCodigo(codigo);
+        String nome = null;
+        String cpf = null;
+        String telefone = null;
 
-        String nome = LeituraController.lerString(sc, "Digite o nome:");
+        if (tipo == TipoUsuarioEnum.ANONIMO) {
 
-        return service.criar(nome, tipo);
+            System.out.println("Nome (opcional):");
+            nome = sc.nextLine();
+
+            System.out.println("Telefone (opcional):");
+            telefone = sc.nextLine();
+
+        } else {
+
+            nome = LeituraController.lerString(sc, "Digite o nome:");
+
+            while (true) {
+                cpf = LeituraController.lerString(sc, "Digite o CPF:");
+                if (isCpfValido(cpf)) break;
+                System.out.println("CPF inválido!");
+            }
+
+            telefone = LeituraController.lerString(sc, "Digite o telefone:");
+        }
+
+        return service.criar(nome, tipo, cpf, telefone);
     }
+
+
 }

@@ -115,4 +115,5 @@ public class SolicitacaoModel {
     public void setUsuarioId(Integer usuarioId) {
         this.usuarioId = usuarioId;
     }
+
 }

@@ -2,20 +2,28 @@ package com.observaAcao.enums;
 
 import java.util.Scanner;
 import com.observaAcao.interfaces.MenuUsuario;
+import com.observaAcao.models.UsuarioModel;
 
 public enum TipoUsuarioEnum {
 
     CIDADAO(1) {
         @Override
-        public void executarMenu(Scanner sc) {
-            MenuUsuario.menuUsuario(sc);
+        public void executarMenu(Scanner sc, UsuarioModel usuario) {
+            MenuUsuario.menuUsuario(sc, usuario);
         }
     },
 
     GESTOR(2) {
         @Override
-        public void executarMenu(Scanner sc) {
+        public void executarMenu(Scanner sc, UsuarioModel usuario) {
             System.out.println("Menu gestor");
+        }
+    },
+
+    ANONIMO(3) {
+        @Override
+        public void executarMenu(Scanner sc, UsuarioModel usuario) {
+            System.out.println("Menu anônimo (somente denúncias)");
         }
     };
 
@@ -36,5 +44,5 @@ public enum TipoUsuarioEnum {
         throw new IllegalArgumentException("Código inválido");
     }
 
-    public abstract void executarMenu(Scanner sc);
+    public abstract void executarMenu(Scanner sc, UsuarioModel usuario);
 }

@@ -1,6 +1,7 @@
 package com.observaAcao.services;
 
 import com.observaAcao.enums.CategoriaEnum;
+import com.observaAcao.enums.TipoUsuarioEnum;
 import com.observaAcao.models.SolicitacaoModel;
 import com.observaAcao.models.UsuarioModel;
 import com.observaAcao.repositories.SolicitacaoRepository;
@@ -14,6 +15,12 @@ public class SolicitacaoService {
                                   String bairro,
                                   String endereco,
                                   UsuarioModel usuario) {
+
+        if (usuario.getTipo() == TipoUsuarioEnum.ANONIMO &&
+                !categoria.isPermiteAnonimo()) {
+
+            throw new RuntimeException("Usuário anônimo só pode realizar denúncias");
+        }
 
         if (descricao == null || descricao.trim().length() < 10) {
             throw new RuntimeException("Descrição deve ter no mínimo 10 caracteres");

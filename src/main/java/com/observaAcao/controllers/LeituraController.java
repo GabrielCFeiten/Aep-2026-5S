@@ -79,4 +79,18 @@ public class LeituraController {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }
+
+    public static boolean isCpfValido(String cpf) {
+        if (cpf == null || cpf.length() != 11 || cpf.matches("(\\d)\\1{10}")) return false;
+        try {
+            int d1 = 0, d2 = 0;
+            for (int i = 0; i < 9; i++) {
+                d1 += Character.getNumericValue(cpf.charAt(i)) * (10 - i);
+                d2 += Character.getNumericValue(cpf.charAt(i)) * (11 - i);
+            }
+            d1 = (d1 * 10) % 11 % 10;
+            d2 = ((d2 + (d1 * 2)) * 10) % 11 % 10;
+            return d1 == Character.getNumericValue(cpf.charAt(9)) && d2 == Character.getNumericValue(cpf.charAt(10));
+        } catch (Exception e) { return false; }
+    }
 }

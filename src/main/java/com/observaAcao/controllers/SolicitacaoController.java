@@ -17,6 +17,9 @@ public class SolicitacaoController {
             try {
                 LeituraController.limparTela();
 
+                // =========================
+                // ESCOLHA DE CATEGORIA
+                // =========================
                 CategoriaEnum[] opcoes = CategoriaEnum.values();
 
                 String[] nomes = new String[opcoes.length];
@@ -32,9 +35,12 @@ public class SolicitacaoController {
 
                 CategoriaEnum categoria = opcoes[index];
 
+                // =========================
+                // ENTRADAS
+                // =========================
                 String descricao = LeituraController.lerStringMin(
                         leitor,
-                        "Digite a descrição:",
+                        "Digite a descrição (mín 10 caracteres):",
                         10
                 );
 
@@ -48,6 +54,9 @@ public class SolicitacaoController {
                         "Digite o bairro:"
                 );
 
+                // =========================
+                // CRIAÇÃO
+                // =========================
                 SolicitacaoModel s = service.criar(
                         categoria,
                         descricao,
@@ -56,6 +65,9 @@ public class SolicitacaoController {
                         usuario
                 );
 
+                // =========================
+                // SAÍDA
+                // =========================
                 LeituraController.limparTela();
 
                 System.out.println("=== SOLICITAÇÃO CRIADA ===");
@@ -68,13 +80,15 @@ public class SolicitacaoController {
                 System.out.println("Endereço: " + s.getEndereco());
                 System.out.println("Status: " + s.getStatus());
 
-                System.out.println("\nPressione ENTER...");
+                System.out.println("\nPressione ENTER para continuar...");
                 leitor.nextLine();
 
                 break;
 
             } catch (RuntimeException e) {
-                System.out.println("Erro: " + e.getMessage());
+
+                System.out.println("\nErro: " + e.getMessage());
+                System.out.println("Pressione ENTER para tentar novamente...");
                 leitor.nextLine();
             }
         }

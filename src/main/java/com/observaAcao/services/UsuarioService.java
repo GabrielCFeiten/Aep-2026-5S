@@ -8,12 +8,17 @@ public class UsuarioService {
 
     private final UsuarioRepository repo = new UsuarioRepository();
 
-    public UsuarioModel criar(String nome, TipoUsuarioEnum tipo) {
+    public UsuarioModel criar(String nome, TipoUsuarioEnum tipo, String cpf, String telefone) {
 
-        if (nome == null || nome.trim().isEmpty()) {
-            throw new RuntimeException("Nome inválido");
+        if (tipo != TipoUsuarioEnum.ANONIMO) {
+
+            if (nome == null || nome.isBlank())
+                throw new RuntimeException("Nome obrigatório");
+
+            if (!cpfValido(cpf))
+                throw new RuntimeException("CPF inválido");
         }
 
-        return repo.salvar(new UsuarioModel(nome, tipo));
+        return repo.salvar(new UsuarioModel(nome, tipo, cpf, telefone));
     }
 }
