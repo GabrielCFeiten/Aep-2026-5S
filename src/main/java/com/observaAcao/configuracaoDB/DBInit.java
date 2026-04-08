@@ -10,22 +10,25 @@ public class DBInit {
              Statement s = c.createStatement()) {
 
             s.execute("""
-                CREATE TABLE IF NOT EXISTS solicitacao (
-                protocolo INT PRIMARY KEY AUTO_INCREMENT,
-                categoria VARCHAR(100),
-                descricao VARCHAR(255),
-                localizacao VARCHAR(150),
-                prioridade VARCHAR(50),
-                status VARCHAR(50) DEFAULT 'ABERTO',
-                prazo DATE
+                CREATE TABLE IF NOT EXISTS usuario (
+                    id INT PRIMARY KEY AUTO_INCREMENT,
+                    nome VARCHAR,
+                    tipo VARCHAR
                 )
             """);
 
             s.execute("""
-                CREATE TABLE IF NOT EXISTS usuario (
-                    id IDENTITY PRIMARY KEY,
-                    nome VARCHAR,
-                    tipo VARCHAR
+                CREATE TABLE IF NOT EXISTS solicitacao (
+                protocolo INT PRIMARY KEY AUTO_INCREMENT,
+                categoria VARCHAR(100),
+                descricao VARCHAR(255),
+                endereco VARCHAR(150),
+                bairro VARCHAR(50),
+                prioridade VARCHAR(50),
+                status VARCHAR(50) DEFAULT 'ABERTO',
+                prazo DATE,
+                usuario_id INT,
+                FOREIGN KEY (usuario_id) REFERENCES usuario(id)
                 )
             """);
 

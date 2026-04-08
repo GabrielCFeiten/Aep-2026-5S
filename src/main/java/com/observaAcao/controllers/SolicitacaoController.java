@@ -1,33 +1,81 @@
 package com.observaAcao.controllers;
 
+import com.observaAcao.enums.CategoriaEnum;
+import com.observaAcao.models.SolicitacaoModel;
+import com.observaAcao.models.UsuarioModel;
 import com.observaAcao.services.SolicitacaoService;
 
 import java.util.Scanner;
 
 public class SolicitacaoController {
 
-    SolicitacaoService service = new SolicitacaoService();
+    private final SolicitacaoService service = new SolicitacaoService();
 
-    public void criarSolicitacao(Scanner leitor){
+    public void criarSolicitacao(Scanner leitor, UsuarioModel usuario) {
 
         while (true) {
             try {
-                System.out.println("Digite a categoria:");
-                String categoria = leitor.nextLine();
+                LeituraController.limparTela();
 
-                System.out.println("Digite a descricao:");
-                String descricao = leitor.nextLine();
+                CategoriaEnum[] opcoes = CategoriaEnum.values();
 
-                System.out.println("Digite a localizacao:");
-                String localizacao = leitor.nextLine();
+                String[] nomes = new String[opcoes.length];
+                for (int i = 0; i < opcoes.length; i++) {
+                    nomes[i] = opcoes[i].name();
+                }
 
-                service.criar(categoria, descricao, localizacao);
+                int index = LeituraController.escolherOpcao(
+                        leitor,
+                        "Escolha a categoria:",
+                        nomes
+                );
 
-                System.out.println("Solicitação criada com sucesso!");
+                CategoriaEnum categoria = opcoes[index];
+
+                String descricao = LeituraController.lerStringMin(
+                        leitor,
+                        "Digite a descrição:",
+                        10
+                );
+
+                String endereco = LeituraController.lerString(
+                        leitor,
+                        "Digite o endereço:"
+                );
+
+                String bairro = LeituraController.lerString(
+                        leitor,
+                        "Digite o bairro:"
+                );
+
+                SolicitacaoModel s = service.criar(
+                        categoria,
+                        descricao,
+                        bairro,
+                        endereco,
+                        usuario
+                );
+
+                LeituraController.limparTela();
+
+                System.out.println("=== SOLICITAÇÃO CRIADA ===");
+                System.out.println("Protocolo: " + s.getProtocolo());
+                System.out.println("Categoria: " + s.getCategoria());
+                System.out.println("Descrição: " + s.getDescricao());
+                System.out.println("Prioridade: " + s.getPrioridade());
+                System.out.println("Prazo: " + s.getPrazo());
+                System.out.println("Bairro: " + s.getBairro());
+                System.out.println("Endereço: " + s.getEndereco());
+                System.out.println("Status: " + s.getStatus());
+
+                System.out.println("\nPressione ENTER...");
+                leitor.nextLine();
+
                 break;
 
             } catch (RuntimeException e) {
-                System.out.println(e.getMessage());
+                System.out.println("Erro: " + e.getMessage());
+                leitor.nextLine();
             }
         }
     }

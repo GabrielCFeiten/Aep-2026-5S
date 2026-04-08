@@ -1,5 +1,6 @@
 package com.observaAcao.interfaces;
 
+import com.observaAcao.controllers.LeituraController;
 import com.observaAcao.controllers.SolicitacaoController;
 
 import java.util.Scanner;
@@ -8,6 +9,7 @@ import static com.observaAcao.controllers.LeituraController.lerInt;
 public class MenuUsuario {
 
     public static void menuUsuario(Scanner leitor) {
+        LeituraController.limparTela();
         System.out.println("Bem vindo ao menu principal do usuario");
         int opcao = 0;
         SolicitacaoController solicitacaoController = new SolicitacaoController();
