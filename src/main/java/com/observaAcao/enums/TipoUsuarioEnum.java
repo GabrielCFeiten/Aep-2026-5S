@@ -1,6 +1,8 @@
 package com.observaAcao.enums;
 
 import java.util.Scanner;
+import com.observaAcao.interfaces.MenuAnonimo;
+import com.observaAcao.interfaces.MenuGestor;
 import com.observaAcao.interfaces.MenuUsuario;
 import com.observaAcao.models.UsuarioModel;
 
@@ -16,15 +18,14 @@ public enum TipoUsuarioEnum {
     GESTOR(2) {
         @Override
         public void executarMenu(Scanner sc, UsuarioModel usuario) {
-            System.out.println("Menu gestor");
+            MenuGestor.menuGestor(sc, usuario);
         }
     },
 
     ANONIMO(3) {
         @Override
         public void executarMenu(Scanner sc, UsuarioModel usuario) {
-            System.out.println("Menu anônimo (somente denúncias)");
-            MenuUsuario.menuUsuario(sc, usuario);
+            MenuAnonimo.menuAnonimo(sc, usuario);
         }
     };
 
