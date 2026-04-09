@@ -12,8 +12,7 @@ public class UsuarioModel {
     private String telefone;
     private TipoUsuarioEnum tipo;
 
-    public UsuarioModel(Integer id, String nome, String cpf, String telefone, TipoUsuarioEnum tipo) {
-        this.id = id;
+    public UsuarioModel(String nome, String cpf, String telefone, TipoUsuarioEnum tipo) {
         this.nome = nome;
         this.cpf = cpf;
         this.telefone = telefone;

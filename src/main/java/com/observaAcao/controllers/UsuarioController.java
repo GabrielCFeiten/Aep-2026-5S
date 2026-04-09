@@ -47,7 +47,8 @@ public class UsuarioController {
             telefone = LeituraController.lerString(sc, "Digite o telefone:");
         }
 
-        return service.criar(nome, tipo, cpf, telefone);
+        UsuarioModel u = service.criar(nome, tipo, cpf, telefone);
+        return u;
     }
 
 

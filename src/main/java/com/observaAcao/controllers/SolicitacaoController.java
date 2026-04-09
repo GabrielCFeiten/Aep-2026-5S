@@ -1,10 +1,14 @@
 package com.observaAcao.controllers;
 
+import com.observaAcao.configuracaoDB.SolicitacaoCompletaDTO;
+import com.observaAcao.configuracaoDB.SolicitacaoResumoDTO;
 import com.observaAcao.enums.CategoriaEnum;
+import com.observaAcao.models.HistoricoModel;
 import com.observaAcao.models.SolicitacaoModel;
 import com.observaAcao.models.UsuarioModel;
 import com.observaAcao.services.SolicitacaoService;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class SolicitacaoController {
@@ -70,15 +74,7 @@ public class SolicitacaoController {
                 // =========================
                 LeituraController.limparTela();
 
-                System.out.println("=== SOLICITAÇÃO CRIADA ===");
-                System.out.println("Protocolo: " + s.getProtocolo());
-                System.out.println("Categoria: " + s.getCategoria());
-                System.out.println("Descrição: " + s.getDescricao());
-                System.out.println("Prioridade: " + s.getPrioridade());
-                System.out.println("Prazo: " + s.getPrazo());
-                System.out.println("Bairro: " + s.getBairro());
-                System.out.println("Endereço: " + s.getEndereco());
-                System.out.println("Status: " + s.getStatus());
+                System.out.println(s);
 
                 System.out.println("\nPressione ENTER para continuar...");
                 leitor.nextLine();
@@ -91,6 +87,59 @@ public class SolicitacaoController {
                 System.out.println("Pressione ENTER para tentar novamente...");
                 leitor.nextLine();
             }
+        }
+    }
+
+
+    public void buscarPorProtocolo(Scanner sc) {
+
+        try {
+            System.out.println("Digite o protocolo:");
+            int protocolo = LeituraController.lerInt(sc);
+
+            SolicitacaoCompletaDTO dto =
+                    service.buscarPorProtocolo(protocolo);
+
+            // 🔹 Dados da solicitação
+            System.out.println(dto.getSolicitacao());
+
+            // 🔹 Histórico
+            System.out.println("\n--- HISTÓRICO ---");
+
+            for (HistoricoModel h : dto.getHistorico()) {
+                System.out.println(
+                        h.getData() + " | " +
+                                h.getStatus() + " | " +
+                                h.getJustificativa()
+                );
+            }
+
+        } catch (RuntimeException e) {
+            System.out.println("Erro: " + e.getMessage());
+        }
+    }
+
+    public void listarMinhasSolicitacoes(Scanner sc, UsuarioModel usuario) {
+
+        List<SolicitacaoResumoDTO> lista =
+                service.listarPorUsuario(usuario.getId());
+
+        for (SolicitacaoResumoDTO dto : lista) {
+
+            System.out.println(dto.getSolicitacao());
+
+            HistoricoModel h = dto.getUltimoHistorico();
+
+            if (h != null) {
+                System.out.println("Última atualização:");
+                System.out.println(
+                        h.getData() + " | " +
+                                h.getStatus() + " | " +
+                                h.getJustificativa()
+                );
+            }
+
+            System.out.println("\n====================\n");
         }
     }
 }

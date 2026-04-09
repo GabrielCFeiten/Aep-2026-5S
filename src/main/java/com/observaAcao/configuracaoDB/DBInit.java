@@ -34,6 +34,20 @@ public class DBInit {
                 )
             """);
 
+            s.execute("""
+                CREATE TABLE IF NOT EXISTS historico (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                protocolo INT,
+                status VARCHAR(50),
+                data_movimentacao TIMESTAMP,
+                responsavel_id INT,
+                justificativa VARCHAR(255),
+        
+                FOREIGN KEY (protocolo) REFERENCES solicitacao(protocolo),
+                FOREIGN KEY (responsavel_id) REFERENCES usuario(id)
+                )   
+            """);
+
         } catch (Exception e) {
             System.out.println("Erro DB: " + e.getMessage());
         }

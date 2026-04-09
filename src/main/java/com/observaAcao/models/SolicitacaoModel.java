@@ -9,7 +9,7 @@ import java.time.LocalDate;
 public class SolicitacaoModel {
 
     private Integer protocolo;
-    private CategoriaEnum categoria; // <-- continua sendo "categoria"
+    private CategoriaEnum categoria;
     private String descricao;
     private String bairro;
     private String endereco;
@@ -20,12 +20,14 @@ public class SolicitacaoModel {
 
     public SolicitacaoModel(CategoriaEnum categoria,
                             String descricao,
-                            String bairro, String endereco) {
+                            String bairro, String endereco,
+                            Integer usuarioId) {
 
         this.categoria = categoria;
         this.descricao = descricao;
         this.bairro = bairro;
         this.endereco = endereco;
+        this.usuarioId = usuarioId;
 
         definirPrioridadeEPrazo();
 
@@ -116,4 +118,16 @@ public class SolicitacaoModel {
         this.usuarioId = usuarioId;
     }
 
+    @Override
+    public String toString() {
+        return "\n=== SOLICITAÇÃO ===" +
+                "\nProtocolo: " + protocolo +
+                "\nCategoria: " + categoria +
+                "\nDescrição: " + descricao +
+                "\nPrioridade: " + prioridade +
+                "\nPrazo: " + prazo +
+                "\nBairro: " + bairro +
+                "\nEndereço: " + endereco +
+                "\nStatus: " + status;
+    }
 }
