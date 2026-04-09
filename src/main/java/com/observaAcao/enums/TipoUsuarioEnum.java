@@ -24,6 +24,7 @@ public enum TipoUsuarioEnum {
         @Override
         public void executarMenu(Scanner sc, UsuarioModel usuario) {
             System.out.println("Menu anônimo (somente denúncias)");
+            MenuUsuario.menuUsuario(sc, usuario);
         }
     };
 

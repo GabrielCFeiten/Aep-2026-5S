@@ -6,7 +6,6 @@ import com.observaAcao.enums.TipoUsuarioEnum;
 import com.observaAcao.models.UsuarioModel;
 import com.observaAcao.services.UsuarioService;
 
-import static com.observaAcao.controllers.LeituraController.isCpfValido;
 
 public class UsuarioController {
 
@@ -38,11 +37,7 @@ public class UsuarioController {
 
             nome = LeituraController.lerString(sc, "Digite o nome:");
 
-            while (true) {
-                cpf = LeituraController.lerString(sc, "Digite o CPF:");
-                if (isCpfValido(cpf)) break;
-                System.out.println("CPF inválido!");
-            }
+            cpf = LeituraController.lerString(sc, "Digite o CPF:");
 
             telefone = LeituraController.lerString(sc, "Digite o telefone:");
         }

@@ -2,7 +2,7 @@ package com.observaAcao.models;
 
 import com.observaAcao.enums.TipoUsuarioEnum;
 
-import static com.observaAcao.controllers.LeituraController.isCpfValido;
+
 
 public class UsuarioModel {
 
@@ -35,11 +35,6 @@ public class UsuarioModel {
 
     public void setCpf(String cpf) {
 
-        if (isCpfValido(cpf)){
-            this.cpf = cpf;
-        }else{
-            System.out.println("CPF invalido");
-        }
     }
 
     public String getTelefone() {

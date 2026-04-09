@@ -4,7 +4,7 @@ import com.observaAcao.enums.TipoUsuarioEnum;
 import com.observaAcao.models.UsuarioModel;
 import com.observaAcao.repositories.UsuarioRepository;
 
-import static com.observaAcao.controllers.LeituraController.isCpfValido;
+
 
 public class UsuarioService {
 
@@ -17,8 +17,6 @@ public class UsuarioService {
             if (nome == null || nome.isBlank())
                 throw new RuntimeException("Nome obrigatório");
 
-            if (!isCpfValido(cpf))
-                throw new RuntimeException("CPF inválido");
         }
 
         UsuarioModel u = repo.salvar(new UsuarioModel(nome,telefone, cpf,tipo));

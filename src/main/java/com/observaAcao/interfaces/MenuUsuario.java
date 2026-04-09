@@ -40,6 +40,8 @@ public class MenuUsuario {
                 case 4:
                     dadosDeContato();
                     break;
+                case 5:
+                    break;
                 default:
                     System.out.println("Opção invalida");
             }

@@ -100,10 +100,10 @@ public class SolicitacaoController {
             SolicitacaoCompletaDTO dto =
                     service.buscarPorProtocolo(protocolo);
 
-            // 🔹 Dados da solicitação
+            //Dados da solicitação
             System.out.println(dto.getSolicitacao());
 
-            // 🔹 Histórico
+            //Histórico
             System.out.println("\n--- HISTÓRICO ---");
 
             for (HistoricoModel h : dto.getHistorico()) {
