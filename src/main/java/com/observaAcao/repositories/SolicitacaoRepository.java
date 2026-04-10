@@ -157,4 +157,73 @@ public class SolicitacaoRepository {
 
         return lista;
     }
+
+    public List<SolicitacaoModel> listarPorPrioridade(PrioridadeEnum prioridade) {
+
+        List<SolicitacaoModel> lista = new ArrayList<>();
+
+        String sql = "SELECT * FROM solicitacao WHERE prioridade = ?";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, prioridade.name());
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                lista.add(mapear(rs));
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao listar por prioridade");
+        }
+
+        return lista;
+    }
+
+    public List<SolicitacaoModel> listarPorBairro(String bairro) {
+
+        List<SolicitacaoModel> lista = new ArrayList<>();
+
+        String sql = "SELECT * FROM solicitacao WHERE bairro = ?";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, bairro);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                lista.add(mapear(rs));
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao listar por bairro");
+        }
+
+        return lista;
+    }
+
+    public List<SolicitacaoModel> listarPorCategoria(CategoriaEnum categoria) {
+
+        List<SolicitacaoModel> lista = new ArrayList<>();
+
+        String sql = "SELECT * FROM solicitacao WHERE categoria = ?";
+
+        try (Connection conn = ConnectionFactory.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, categoria.name());
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                lista.add(mapear(rs));
+            }
+
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao listar por categoria");
+        }
+
+        return lista;
+    }
 }

@@ -21,9 +21,9 @@ public class UsuarioController {
 
         TipoUsuarioEnum tipo = TipoUsuarioEnum.fromCodigo(LeituraController.lerInt(sc));
 
-        String nome = null;
+        String nome;
         String cpf = null;
-        String telefone = null;
+        String telefone;
 
         if (tipo == TipoUsuarioEnum.ANONIMO) {
 
@@ -42,8 +42,7 @@ public class UsuarioController {
             telefone = LeituraController.lerString(sc, "Digite o telefone:");
         }
 
-        UsuarioModel u = service.criar(nome, tipo, cpf, telefone);
-        return u;
+        return service.criar(nome, tipo, cpf, telefone);
     }
 
 

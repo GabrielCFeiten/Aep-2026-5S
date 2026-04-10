@@ -19,8 +19,6 @@ public class UsuarioService {
 
         }
 
-        UsuarioModel u = repo.salvar(new UsuarioModel(nome,telefone, cpf,tipo));
-
-        return u;
+        return repo.salvar(new UsuarioModel(nome,telefone, cpf,tipo));
     }
 }

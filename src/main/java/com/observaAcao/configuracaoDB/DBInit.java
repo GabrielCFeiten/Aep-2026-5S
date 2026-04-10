@@ -45,7 +45,7 @@ public class DBInit {
         
                 FOREIGN KEY (protocolo) REFERENCES solicitacao(protocolo),
                 FOREIGN KEY (responsavel_id) REFERENCES usuario(id)
-                )   
+                )
             """);
 
         } catch (Exception e) {

@@ -3,6 +3,7 @@ package com.observaAcao.services;
 import com.observaAcao.configuracaoDB.SolicitacaoCompletaDTO;
 import com.observaAcao.configuracaoDB.SolicitacaoResumoDTO;
 import com.observaAcao.enums.CategoriaEnum;
+import com.observaAcao.enums.PrioridadeEnum;
 import com.observaAcao.enums.StatusEnum;
 import com.observaAcao.enums.TipoUsuarioEnum;
 import com.observaAcao.models.HistoricoModel;
@@ -114,6 +115,45 @@ public class SolicitacaoService {
         List<SolicitacaoCompletaDTO> resultado = new ArrayList<>();
 
         for (SolicitacaoModel s : solicitacoes) {
+
+            List<HistoricoModel> historico =
+                    historicoRepo.listarPorProtocolo(s.getProtocolo());
+
+            resultado.add(new SolicitacaoCompletaDTO(s, historico));
+        }
+
+        return resultado;
+    }
+
+    public List<SolicitacaoCompletaDTO> listarPorPrioridade(PrioridadeEnum prioridade) {
+
+        List<SolicitacaoModel> solicitacoes =
+                banco.listarPorPrioridade(prioridade);
+
+        return montarCompleto(solicitacoes);
+    }
+
+    public List<SolicitacaoCompletaDTO> listarPorBairro(String bairro) {
+
+        List<SolicitacaoModel> solicitacoes =
+                banco.listarPorBairro(bairro);
+
+        return montarCompleto(solicitacoes);
+    }
+
+    public List<SolicitacaoCompletaDTO> listarPorCategoria(CategoriaEnum categoria) {
+
+        List<SolicitacaoModel> solicitacoes =
+                banco.listarPorCategoria(categoria);
+
+        return montarCompleto(solicitacoes);
+    }
+
+    private List<SolicitacaoCompletaDTO> montarCompleto(List<SolicitacaoModel> lista) {
+
+        List<SolicitacaoCompletaDTO> resultado = new ArrayList<>();
+
+        for (SolicitacaoModel s : lista) {
 
             List<HistoricoModel> historico =
                     historicoRepo.listarPorProtocolo(s.getProtocolo());

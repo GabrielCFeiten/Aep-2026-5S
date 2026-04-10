@@ -31,8 +31,7 @@ public class MenuUsuario {
                     solicitacaoController.criarSolicitacao(leitor, usuario);
                     break;
                 case 2:
-                    solicitacaoController.listarMinhasSolicitacoes(leitor,
-                            usuario);
+                    solicitacaoController.listarMinhasSolicitacoes(usuario);
                     break;
                 case 3:
                     solicitacaoController.buscarPorProtocolo(leitor);
@@ -41,6 +40,7 @@ public class MenuUsuario {
                     dadosDeContato();
                     break;
                 case 5:
+                    System.out.println("Saindo do menu ...");
                     break;
                 default:
                     System.out.println("Opção invalida");
@@ -53,6 +53,6 @@ public class MenuUsuario {
         System.out.println("Endereço: " + ENDERECO);
         System.out.println("Horário de atendimento: " + HORARIO_DE_ATENDIMENTO);
         System.out.println("Número de telefone: " + NUMERO_TELEFONE_1);
-        System.out.println("Número de telefone 2: " + NUEMRO_TELEFONE_2);
+        System.out.println("Número de telefone 2: " + NUEMRO_TELEFONE_2 + "\n");
     }
 }

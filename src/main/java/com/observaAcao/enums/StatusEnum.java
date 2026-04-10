@@ -5,15 +5,6 @@ public enum StatusEnum {
     TRIAGEM,
     EM_EXECUCAO,
     RESOLVIDO,
-    ENCERRADO;
+    ENCERRADO
 
-    private StatusEnum status;
-
-    public void setStatus(StatusEnum status) {
-        this.status = status;
-    }
-
-    public StatusEnum getStatus() {
-        return status;
-    }
 }

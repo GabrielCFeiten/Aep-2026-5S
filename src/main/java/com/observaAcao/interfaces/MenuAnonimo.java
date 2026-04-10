@@ -2,7 +2,6 @@ package com.observaAcao.interfaces;
 
 import com.observaAcao.configuracaoDB.SolicitacaoCompletaDTO;
 import com.observaAcao.controllers.LeituraController;
-import com.observaAcao.controllers.SolicitacaoController;
 import com.observaAcao.enums.CategoriaEnum;
 import com.observaAcao.models.HistoricoModel;
 import com.observaAcao.models.SolicitacaoModel;
