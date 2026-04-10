@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/src/main/java/com/observaAcao/configuracaoDB/DBInit.java" dialect="H2" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/observaAcao/repositories/HistoricoRepository.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/observaAcao/repositories/SolicitacaoRepository.java" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/observaAcao/repositories/UsuarioRepository.java" dialect="GenericSQL" />
+  </component>
+</project>
